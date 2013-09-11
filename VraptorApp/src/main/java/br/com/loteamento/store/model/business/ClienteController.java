@@ -26,7 +26,7 @@ public class ClienteController {
 		this.result = result;
 		this.dao = dao;
 		this.validator = validator;
-	}	
+	}
 	
 	@Get("/clientes")
 	public List<Cliente> index(){
@@ -34,7 +34,7 @@ public class ClienteController {
 	}
 	
 	@Get("/clientes/new")
-	public Product newProduct() {
+	public Product newCliente() {
 		return new Product();
 	}
 	
@@ -46,7 +46,7 @@ public class ClienteController {
 //				that(cliente.getDescription() != null && cliente.getDescription().length() > 0 ,"erro", "product.descricao.vazia");
 			}
 		});
-		validator.onErrorUsePageOf(this).newProduct();
+		validator.onErrorUsePageOf(this).newCliente();
 		
 		dao.create(cliente);
 		result.redirectTo(this).index();
