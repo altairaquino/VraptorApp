@@ -15,5 +15,9 @@ public class Cliente {
 	
 	@Column(length=60)
 	private String nome;
+	
+	public Long getId() {
+		return id;
+	}
 
 }

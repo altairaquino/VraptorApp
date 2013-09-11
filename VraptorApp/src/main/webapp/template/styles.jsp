@@ -3,6 +3,8 @@
 <link href="${pageContext.request.contextPath}/template/css/bootstrap-select.min.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/template/css/docs.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/template/css/site.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/template/css/site.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/template/css/jquery.dataTables.css" rel="stylesheet">
 
 <style type="text/css">
   body {

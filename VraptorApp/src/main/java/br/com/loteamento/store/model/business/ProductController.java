@@ -29,7 +29,7 @@ public class ProductController {
 	
 	@Get("/products")
 	public List<Product> index(){
-		return dao.findAll();
+		return dao.loadAll();
 	}
 	
 	@Get("/products/new")

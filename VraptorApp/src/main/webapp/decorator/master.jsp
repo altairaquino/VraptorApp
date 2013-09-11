@@ -3,7 +3,9 @@
 
 <html lang="pt-BR">
   <head>
-    <title>VStore</title>
+    <title>
+	    <decorator:title>VStore</decorator:title>    
+    </title>
     
 	<jsp:include page="/template/styles.jsp" />
     <jsp:include page="/template/scripts.jsp" />

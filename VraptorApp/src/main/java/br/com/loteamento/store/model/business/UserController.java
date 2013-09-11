@@ -10,7 +10,6 @@ import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
 import br.com.caelum.vraptor.view.Results;
-import br.com.loteamento.store.model.dao.ProductDao;
 import br.com.loteamento.store.model.dao.UserDao;
 import br.com.loteamento.store.model.entity.Product;
 import br.com.loteamento.store.model.entity.User;
@@ -20,22 +19,18 @@ public class UserController {
 
 	private final Result result;
 	private final UserDao dao;
-	private final ProductDao productDao;
 
 	private final Validator validator;
 
-	public UserController(Result result, UserDao dao, ProductDao productDao,
-			Validator validator) {
+	public UserController(Result result, UserDao dao, Validator validator) {
 		this.result = result;
 		this.dao = dao;
-		this.productDao = productDao;
-
 		this.validator = validator;
 	}
 
 	@Get("/users")
 	public List<User> index() {
-		return dao.findAll();
+		return dao.loadAll();
 	}
 
 	@Post("/users")
@@ -79,8 +74,7 @@ public class UserController {
 	
 	@Get("/users/list")
 	public void listByProduct(Product product) {
-		//product  = productDao.find(product.getId());
-		List<User> userList = dao.findAll();
+		List<User> userList = dao.loadAll();
 		result.use(Results.json()).from(userList).serialize();
 	}
 	

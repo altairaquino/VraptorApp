@@ -2,6 +2,7 @@
 
 <head>
 	<title>Product [index]</title>
+	
 	<script>
 		function showModal() {
 		    $('#modal-content').modal('show');
@@ -25,36 +26,45 @@
 	        }
 	    });
 	    
+	    $(document).ready(function() {
+			$('#data-table').dataTable();
+		});
+	    
     </script>
 </head>
 <body>
 	<h1>Listing products</h1>
 
-	<table class="table table-condensed table-striped table-bordered">
-		<tr>
-			<th>Name</th>
-			<th>Description</th>
-			<th>Price</th>
-			<th></th>
-			<th></th>
-			<th></th>
-		</tr>
-
-		<c:forEach items="${productList}" var="product">
+	<table class="table table-condensed table-striped table-bordered" id="data-table">
+		<thead>
 			<tr>
-				<td>${product.name}</td>
-				<td>${product.description}</td>
-				<td>${product.price}</td>
-				<td><a href="${pageContext.request.contextPath}/products/${product.id}">show</a></td>
-				<td><a href="${pageContext.request.contextPath}/products/${product.id}/edit">edit</a></td>
-				<td>
-					<form id="destroy-form" action="${pageContext.request.contextPath}/products/${product.id}" method="post">
-						<input type="hidden" name="_method" value="delete"/>
-						<button id="confirmButton" type="button">destroy</button>
-					</form>
-				</td>
+				<th>Name</th>
+				<th>Description</th>
+				<th>Price</th>
+				<th></th>
+				<th></th>
+				<th></th>
 			</tr>
-		</c:forEach>
+		</thead>
+		<tbody>
+			<c:forEach items="${productList}" var="product">
+				<tr>
+					<td>${product.name}</td>
+					<td>${product.description}</td>
+					<td>${product.price}</td>
+					<td><a href="${pageContext.request.contextPath}/products/${product.id}">show</a></td>
+					<td><a href="${pageContext.request.contextPath}/products/${product.id}/edit">edit</a></td>
+					<td>
+						<!-- 
+						<form id="destroy-form" action="${pageContext.request.contextPath}/products/${product.id}" method="post">
+							<input type="hidden" name="_method" value="delete"/>
+							<button id="confirmButton" type="button">destroy</button>
+						</form>
+						 -->
+					</td>
+				</tr>
+			</c:forEach>
+		</tbody>
 	</table>
 	
 	<div id="confirmDiv"></div>
