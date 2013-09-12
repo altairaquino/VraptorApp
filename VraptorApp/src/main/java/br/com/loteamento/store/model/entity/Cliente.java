@@ -16,6 +16,24 @@ public class Cliente {
 	@Column(length=60)
 	private String nome;
 	
+	@Column(length=20)
+	private String cpf;
+	
+	@Column(length=60)
+	private String logradouro;
+	
+	@Column(length=15)
+	private String numeroLogradouro;
+	
+	@Column(length=30)
+	private String complementoLogradouro;
+	
+	@Column(length=30)
+	private String bairro;
+	
+	@Column(length=30)
+	private String cidade;
+	
 	public Long getId() {
 		return id;
 	}
@@ -30,6 +48,14 @@ public class Cliente {
 	
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
 }
