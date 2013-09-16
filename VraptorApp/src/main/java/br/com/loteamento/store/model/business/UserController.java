@@ -29,8 +29,8 @@ public class UserController {
 	}
 
 	@Get("/users")
-	public List<User> index() {
-		return dao.loadAll();
+	public void index() {
+		result.include("userList", dao.loadAll());
 	}
 
 	@Post("/users")
