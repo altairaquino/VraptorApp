@@ -33,14 +33,14 @@
     </script>
 </head>
 <body>
-	<h1>Lista de Clientes</h1>
+	<h3>Relação de Clientes</h3>
 
 	<table class="table table-condensed table-striped table-bordered" id="data-table">
 		<thead>
 			<tr>
-				<th>id</th>
+				<th>Código</th>
 				<th>Nome</th>
-				<th></th>
+				<th>CPF</th>
 				<th></th>
 				<th></th>
 			</tr>
@@ -50,8 +50,11 @@
 				<tr>
 					<td>${cliente.id}</td>
 					<td>${cliente.nome}</td>
-					<td><a href="${pageContext.request.contextPath}/cliente/${cliente.id}">show</a></td>
-					<td><a href="${pageContext.request.contextPath}/cliente/${cliente.id}/edit">edit</a></td>
+					<td>${cliente.cpf}</td>
+					<td>
+						<a href="${pageContext.request.contextPath}/cliente/${cliente.id}">show</a>
+						<a href="${pageContext.request.contextPath}/cliente/${cliente.id}/edit">edit</a>
+					</td>
 					<td>
 						<!-- 
 						<form id="destroy-form" action="${pageContext.request.contextPath}/products/${product.id}" method="post">
@@ -69,7 +72,7 @@
 
 	<br />
 
-	<a class="btn btn-primary" href="#modal-content" onclick="showModal()">Novo Cliente</a>
+	<a class="btn btn-primary" href="#modal-content" onclick="showModal()"><img class="icon-plus-sign"> Novo Cliente</a>
 	
 	<!-- div de cadastro de novo produto -->
 	<div class="modal hide fade" id="modal-content">
@@ -85,7 +88,7 @@
 				</c:forEach>
 			</c:if>
 			
-			<form action="${pageContext.request.contextPath}/clientes" method="post">
+			<form action="${pageContext.request.contextPath}/cliente" method="post">
 			  
 				<c:if test="${not empty product.id}">
 					<input type="hidden" name="product.id" value="${cliente.id}"/>
@@ -94,18 +97,26 @@
 				
 				<div class="field">
 					Nome:<br />
-					<input type="text" name="cliente.nome" value="${cliente.nome}"/>
+					<input type="text" name="cliente.nome" value="${cliente.nome}" maxlength="40" class="input-medium span8" placeholder="Nome"/>
+					<input type="text" name="cliente.cpf" value="${cliente.cpf}" maxlength="11" class="input-medium span3" placeholder="CPF"/>
 				</div>
-				
+				<div class="field">
+					Endereço:<br />
+					<input type="text" name="cliente.logradouro" value="${cliente.logradouro}" maxlength="60" class="input-medium span8" placeholder="Logradouro"/>
+					<input type="text" name="cliente.numeroLogradouro" value="${cliente.numeroLogradouro}" maxlength="10" class="input-medium span3" placeholder="Número"/>
+					<input type="text" name="cliente.bairro" value="${cliente.bairro}" maxlength="60"   class="input-medium span4" placeholder="Bairro"/>
+					<input type="text" name="cliente.cidade" value="${cliente.cidade}" maxlength="50"  class="input-medium span5" placeholder="Cidade"/>
+					<input type="text" name="cliente.estado" value="${cliente.estado}" maxlength="2"  class="input-medium span2" style="text-transform: uppercase;" placeholder="UF"/>
+				</div>				
 				
 			  	<div class="actions">
-					<button class="btn btn-primary" type="submit">save</button>
+					<button class="btn btn-primary" type="submit">Salvar</button>
 				</div>
 			</form>
 			<!-- fim do conteudo do modal -->	
 		</div>
 		<div class="modal-footer">
-			<a href="#" class="btn" data-dismiss="modal" aria-hidden="true"> Cancel </a> 
+			<a href="#" class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Cancelar</a> 
 		</div>
 	</div>	
 

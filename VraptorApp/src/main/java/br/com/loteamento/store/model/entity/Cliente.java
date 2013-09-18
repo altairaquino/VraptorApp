@@ -22,17 +22,20 @@ public class Cliente {
 	@Column(length=60)
 	private String logradouro;
 	
-	@Column(length=15)
+	@Column(length=20)
 	private String numeroLogradouro;
 	
-	@Column(length=30)
+	@Column(length=40)
 	private String complementoLogradouro;
 	
 	@Column(length=30)
 	private String bairro;
 	
-	@Column(length=30)
+	@Column(length=60)
 	private String cidade;
+	
+	@Column(length=5)
+	private String estado;
 	
 	public Long getId() {
 		return id;
@@ -56,6 +59,14 @@ public class Cliente {
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
 }
