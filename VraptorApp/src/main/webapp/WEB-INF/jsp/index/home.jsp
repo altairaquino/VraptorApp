@@ -3,13 +3,12 @@
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Minha Loja</title>
+	<title>Home do Loteamento</title>
 </head>
 <body>
 	<div class="hero-unit">
-	  <h1>Product Store</h1>
-	  <p>Parabéns, o VRaptor está funcionando, e você já pode passar para a próxima seção!
-		Essa aqui será a futura página de entrada da loja!</p>
+	  <h3>Sistema de Loteamento</h3>
+	  <p>Controle e acompanhe seu loteamento com essa nossa aplicação.</p>
 	  <p> </p>
 	</div>
 	

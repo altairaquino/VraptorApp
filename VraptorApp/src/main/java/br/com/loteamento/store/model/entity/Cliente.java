@@ -69,4 +69,44 @@ public class Cliente {
 		this.estado = estado;
 	}
 
+	public String getLogradouro() {
+		return logradouro;
+	}
+
+	public void setLogradouro(String logradouro) {
+		this.logradouro = logradouro;
+	}
+
+	public String getNumeroLogradouro() {
+		return numeroLogradouro;
+	}
+
+	public void setNumeroLogradouro(String numeroLogradouro) {
+		this.numeroLogradouro = numeroLogradouro;
+	}
+
+	public String getComplementoLogradouro() {
+		return complementoLogradouro;
+	}
+
+	public void setComplementoLogradouro(String complementoLogradouro) {
+		this.complementoLogradouro = complementoLogradouro;
+	}
+
+	public String getBairro() {
+		return bairro;
+	}
+
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
+	}
+
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+
 }

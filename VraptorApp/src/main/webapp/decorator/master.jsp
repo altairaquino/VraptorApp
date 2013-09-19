@@ -4,7 +4,7 @@
 
 <html lang="pt-BR">
 	<head>
-	<title><decorator:title>VStore</decorator:title></title>
+	<title><decorator:title>Sistema de Loteamento</decorator:title></title>
 	
 	<jsp:include page="/template/styles.jsp" />
 	<jsp:include page="/template/scripts.jsp" />

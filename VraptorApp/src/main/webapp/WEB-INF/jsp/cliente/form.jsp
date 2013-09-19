@@ -8,8 +8,8 @@
 			
 			<form action="${pageContext.request.contextPath}/cliente" method="post">
 			  
-				<c:if test="${not empty product.id}">
-					<input type="hidden" name="product.id" value="${cliente.id}"/>
+				<c:if test="${not empty cliente.id}">
+					<input type="hidden" name="cliente.id" value="${cliente.id}"/>
 					<input type="hidden" name="_method" value="put"/>
 				</c:if>
 				
