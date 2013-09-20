@@ -19,6 +19,11 @@
 					<input type="text" name="cliente.cpf" value="${cliente.cpf}" maxlength="11" class="input-medium span3" placeholder="CPF"/>
 				</div>
 				<div class="controls controls-row">
+					Contatos:<br/>
+					<input type="text" name="cliente.email" value="${cliente.email}" maxlength="60" class="input-medium span8" placeholder="E-mail"/>
+					<input type="text" name="cliente.fone" value="${cliente.fone}" maxlength="10" class="input-medium span3" placeholder="Fone"/>
+				</div>
+				<div class="controls controls-row">
 					Endereço:<br/>
 					<input type="text" name="cliente.logradouro" value="${cliente.logradouro}" maxlength="60" class="input-medium span8" placeholder="Logradouro"/>
 					<input type="text" name="cliente.numeroLogradouro" value="${cliente.numeroLogradouro}" maxlength="10" class="input-medium span3" placeholder="Número"/>

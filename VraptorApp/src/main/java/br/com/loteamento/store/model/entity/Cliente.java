@@ -20,6 +20,12 @@ public class Cliente {
 	private String cpf;
 	
 	@Column(length=60)
+	private String email;
+	
+	@Column(length=20)
+	private String fone;
+	
+	@Column(length=60)
 	private String logradouro;
 	
 	@Column(length=20)
@@ -107,6 +113,22 @@ public class Cliente {
 
 	public void setCidade(String cidade) {
 		this.cidade = cidade;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getFone() {
+		return fone;
+	}
+
+	public void setFone(String fone) {
+		this.fone = fone;
 	}
 
 }

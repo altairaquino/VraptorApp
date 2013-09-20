@@ -52,8 +52,8 @@
 					<td>${cliente.nome}</td>
 					<td>${cliente.cpf}</td>
 					<td>
-						<a href="${pageContext.request.contextPath}/cliente/${cliente.id}">show</a>
-						<a href="${pageContext.request.contextPath}/cliente/${cliente.id}/edit">edit</a>
+						<a href="${pageContext.request.contextPath}/cliente/${cliente.id}"><img class="icon-eye-open" border="0"> show</a>
+						<a href="${pageContext.request.contextPath}/cliente/${cliente.id}/edit"><img class="icon-edit" border="0"> edit</a>
 					</td>
 					<td>
 						<!-- 
@@ -99,6 +99,11 @@
 					Nome:<br/>
 					<input type="text" name="cliente.nome" value="${cliente.nome}" maxlength="40" class="input-medium span8" placeholder="Nome"/>
 					<input type="text" name="cliente.cpf" value="${cliente.cpf}" maxlength="11" class="input-medium span3" placeholder="CPF"/>
+				</div>
+				<div class="controls controls-row">
+					Contatos:<br/>
+					<input type="text" name="cliente.email" value="${cliente.email}" maxlength="60" class="input-medium span8" placeholder="E-mail"/>
+					<input type="text" name="cliente.fone" value="${cliente.fone}" maxlength="10" class="input-medium span3" placeholder="Fone"/>
 				</div>
 				<div class="controls controls-row">
 					Endereço:<br/>
