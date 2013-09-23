@@ -1,6 +1,5 @@
 package br.com.loteamento.store.model.entity;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -28,8 +27,7 @@ public class Contrato {
 	@ManyToOne(fetch=FetchType.LAZY)
 	private FormaPagamento formaPagamento;
 	
-	@Column(length=60)
-	private String nome;
+	private Integer quantidadeParcelas;
 	
 	private StatusContrato statusContrato;
 	
@@ -46,14 +44,6 @@ public class Contrato {
 		this.id = id;
 	}
 	
-	public String getNome() {
-		return nome;
-	}
-	
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
 	public Cliente getCliente() {
 		return cliente;
 	}
@@ -116,6 +106,14 @@ public class Contrato {
 
 	public void setPercentualMulta(Float percentualMulta) {
 		this.percentualMulta = percentualMulta;
+	}
+
+	public Integer getQuantidadeParcelas() {
+		return quantidadeParcelas;
+	}
+
+	public void setQuantidadeParcelas(Integer quantidadeParcelas) {
+		this.quantidadeParcelas = quantidadeParcelas;
 	}	
 
 }

@@ -7,12 +7,12 @@
 				<span class="icon-bar"></span>
 			</a> 
 			
-			<a class="brand" href="#">@VStore</a>
+			<a class="brand" href="#">@LoteFácil</a>
 			<!-- Everything you want hidden at 940px or less, place within here -->
 			<div class="nav-collapse collapse">
 				<p class="navbar-text pull-right">
-					Virtual Store 
-					<a href="#"	class="navbar-link">Brains</a>
+					Sistema de Loteamento
+					<a href="#"	class="navbar-link">Genial Sistemas</a>
 				</p>
 			</div>
 		</div>
