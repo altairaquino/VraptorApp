@@ -77,6 +77,9 @@ public class ContratoController {
 	
 	@Get({"/{contrato.id}/edit"})
 	public Contrato edit(Contrato contrato){
+		result.include("comboCliente", clienteDao.loadAll());
+		result.include("comboLote", loteDao.loadAll());
+		result.include("comboFormaPagamento", formaPagamentoDao.loadAll());
 		return dao.find(contrato.getId());
 	}
 	

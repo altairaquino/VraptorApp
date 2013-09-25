@@ -51,7 +51,7 @@
 					<td>${contrato.id}</td>
 					<td>${contrato.cliente.nome}</td>
 					<td>${contrato.lote.nome}</td>
-					<td>${contrato.valor}</td>					
+					<td>${contrato.valorTotal}</td>					
 					<td>
 						<a href="${pageContext.request.contextPath}/contrato/${contrato.id}"><img class="icon-eye-open" border="0"> show</a>
 						<a href="${pageContext.request.contextPath}/contrato/${contrato.id}/edit"><img class="icon-edit" border="0"> edit</a>
@@ -75,58 +75,7 @@
 		</div>
 		<div class="modal-body">
 		<!-- inicio do conteudo do modal -->			
-			<c:if test="${not empty errors}">
-				<c:forEach items="${errors}" var="error">
-					${error.category} - ${error.message}<br/>
-				</c:forEach>
-			</c:if>
-			
-			<form action="${pageContext.request.contextPath}/contrato" method="post">
-			  
-				<c:if test="${not empty contrato.id}">
-					<input type="hidden" name="contrato.id" value="${contrato.id}"/>
-					<input type="hidden" name="_method" value="put"/>
-				</c:if>
-				
-				<div class="controls controls-row">
-					Cliente:<br/>
-					<select name="contrato.cliente.id" class="input-medium span8">
-						<c:forEach items="${comboCliente}" var="cliente">
-							<option value="${cliente.id}" label="${cliente.nome}">
-						</c:forEach>
-					</select>
-				</div>
-				<div class="controls controls-row">
-					Lote:<br/>
-					<select name="contrato.lote.id" class="input-medium span8">
-						<c:forEach items="${comboLote}" var="lote">
-							<option value="${lote.id}" label="${lote.nome}">
-						</c:forEach>		
-					</select>
-				</div>
-				<div class="controls controls-row">
-					Forma de Pagamento:<br/>
-					<select name="contrato.formaPagamento.id" class="input-medium span8">
-						<c:forEach items="${comboFormaPagamento}" var="formaPagamento">
-							<option value="${formaPagamento.id}" label="${formaPagamento.nome}">
-						</c:forEach>
-					</select>
-					<select name="contrato.quantidadeParcelas">
-						<option value="12" label="12 parcelas">
-						<option value="24" label="24 parcelas">
-						<option value="36" label="36 parcelas">
-						<option value="48" label="48 parcelas">
-					</select>
-				</div>
-				<div class="controls controls-row">
-					Valor:<br/>
-					<input type="text" name="contrato.valor" value="${contrato.valor}" maxlength="60" class="input-medium span8" placeholder="Valor"/>
-				</div>
-				
-			  	<div class="actions">
-					<button class="btn btn-primary" type="submit">Salvar</button>
-				</div>
-			</form>
+			<%@include file="form.jsp"%>
 			<!-- fim do conteudo do modal -->	
 		</div>
 		<div class="modal-footer">

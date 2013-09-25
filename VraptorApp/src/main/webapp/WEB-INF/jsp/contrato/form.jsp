@@ -14,29 +14,41 @@
 				</c:if>
 				
 				<div class="controls controls-row">
-					Nome:<br/>
-					<input type="text" name="contrato.nome" value="${contrato.nome}" maxlength="40" class="input-medium span8" placeholder="Nome"/>
-					<input type="text" name="contrato.cpf" value="${contrato.cpf}" maxlength="11" class="input-medium span3" placeholder="CPF"/>
+					Cliente:<br/>
+					<select name="contrato.cliente.id" class="input-medium span8">
+						<c:forEach items="${comboCliente}" var="cliente">
+							<option value="${cliente.id}" label="${cliente.nome}" ${contrato.cliente.id eq cliente.id ? 'selected' : '' }>
+						</c:forEach>
+					</select>
 				</div>
 				<div class="controls controls-row">
-					Contatos:<br/>
-					<input type="text" name="contrato.email" value="${contrato.email}" maxlength="60" class="input-medium span8" placeholder="E-mail"/>
-					<input type="text" name="contrato.fone" value="${contrato.fone}" maxlength="10" class="input-medium span3" placeholder="Fone"/>
+					Lote:<br/>
+					<select name="contrato.lote.id" class="input-medium span8">
+						<c:forEach items="${comboLote}" var="lote">
+							<option value="${lote.id}" label="${lote.nome}" ${contrato.lote.id eq lote.id ? 'selected' : '' }>
+						</c:forEach>		
+					</select>
 				</div>
 				<div class="controls controls-row">
-					Endereço:<br/>
-					<input type="text" name="contrato.logradouro" value="${contrato.logradouro}" maxlength="60" class="input-medium span8" placeholder="Logradouro"/>
-					<input type="text" name="contrato.numeroLogradouro" value="${contrato.numeroLogradouro}" maxlength="10" class="input-medium span3" placeholder="Número"/>
+					Forma de Pagamento:<br/>
+					<select name="contrato.formaPagamento.id" class="input-medium span6">
+						<c:forEach items="${comboFormaPagamento}" var="formaPagamento">
+							<option value="${formaPagamento.id}" label="${formaPagamento.nome}" ${contrato.formaPagamento.id eq formaPagamento.id ? 'selected' : '' }>
+						</c:forEach>
+					</select>
+					<select name="contrato.quantidadeParcelas" class="span2">
+						<option value="12" label="12 parcelas">
+						<option value="24" label="24 parcelas">
+						<option value="36" label="36 parcelas">
+						<option value="48" label="48 parcelas">
+					</select>
 				</div>
 				<div class="controls controls-row">
-					<input type="text" name="contrato.bairro" value="${contrato.bairro}" maxlength="60"   class="input-medium span4" placeholder="Bairro"/>
-					<input type="text" name="contrato.cidade" value="${contrato.cidade}" maxlength="50"  class="input-medium span5" placeholder="Cidade"/>
-					<input type="text" name="contrato.estado" value="${contrato.estado}" maxlength="2"  class="input-medium span2" style="text-transform: uppercase;" placeholder="UF"/>
-				</div>				
+					Valor:<br/>
+					<input type="text" name="contrato.valorTotal" value="${contrato.valorTotal}" maxlength="60" class="input-medium span8" placeholder="Valor"/>
+				</div>
 				
 			  	<div class="actions">
 					<button class="btn btn-primary" type="submit">Salvar</button>
 				</div>
 			</form>
-
-<a href="${pageContext.request.contextPath}/contrato">Voltar</a>
