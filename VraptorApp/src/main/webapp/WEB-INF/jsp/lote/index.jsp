@@ -1,8 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <head>
-	<title>Contratos</title>
+	<title>Lotes</title>
 	
 	<script>
 		function showModal() {
@@ -19,7 +18,7 @@
 	        function openConfirmModal() {
 	            $("#confirmDiv").confirmModal({
 	                heading: 'Are you sure?',
-	                body: 'click on confirm button to destroy this contrato',
+	                body: 'click on confirm button to destroy this lote',
 	                callback: function () {
 	                    $('#destroy-form').submit();
 	                }
@@ -34,29 +33,26 @@
     </script>
 </head>
 <body>
-	<h3>Relação de Contratos</h3>
+	<h3>Relação de Lotes</h3>
 
 	<table class="table table-condensed table-striped table-bordered" id="data-table">
 		<thead>
 			<tr>
 				<th>Código</th>
-				<th>Cliente</th>
-				<th>Lote</th>
-				<th>Valor</th>
+				<th>Loteamento</th>
+				<th>Nome</th>
 				<th></th>
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${contratoList}" var="contrato">
+			<c:forEach items="${loteList}" var="lote">
 				<tr>
-					<td>${contrato.id}</td>
-					<td>${contrato.cliente.nome}</td>
-					<td>${contrato.lote.nome}</td>
+					<td>${lote.id}</td>
+					<td>${lote.loteamento.nome}</td>
+					<td>${lote.nome}</td>
 					<td>
-						<fmt:formatNumber value="${contrato.valorTotal}" type="currency"/></td>					
-					<td>
-						<a href="${pageContext.request.contextPath}/contrato/${contrato.id}"><img class="icon-eye-open" border="0"> show</a>
-						<a href="${pageContext.request.contextPath}/contrato/${contrato.id}/edit"><img class="icon-edit" border="0"> edit</a>
+						<a href="${pageContext.request.contextPath}/lote/${lote.id}"><img class="icon-eye-open" border="0"> show</a>
+						<a href="${pageContext.request.contextPath}/lote/${lote.id}/edit"><img class="icon-edit" border="0"> edit</a>
 					</td>					
 				</tr>
 			</c:forEach>
@@ -67,13 +63,13 @@
 
 	<br />
 
-	<a class="btn btn-primary" href="#modal-content" onclick="showModal()"><img class="icon-plus-sign"> Novo Contrato</a>
+	<a class="btn btn-primary" href="#modal-content" onclick="showModal()"><img class="icon-plus-sign"> Novo Lote</a>
 	
 	<!-- div de cadastro de novo produto -->
 	<div class="modal hide fade" id="modal-content">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-			<h3>Novo Contrato</h3>
+			<h3>Novo Lote</h3>
 		</div>
 		<div class="modal-body">
 		<!-- inicio do conteudo do modal -->			
