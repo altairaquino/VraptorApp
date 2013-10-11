@@ -1,5 +1,6 @@
 package br.com.m2msolutions.grumobile.model.dao;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -19,9 +20,16 @@ public class DaoService {
 			+ " from busservice b "
 			+ " where b.enabled";
 	
+	private static final String INSERT_ESCALA = "INSERT INTO vehiclebusserviceplanned(vehiclebusserviceplannedid,begintimestamp,endtimestamp,serviceid,vehicle_vehicleid,trip_program_id)"
+			+ "	VALUES(nextval('sq_vehicle_bus_service_planned_id'), ?, ?, ?, ?, ?)";
+	
 	private static final String QUERY_VEICULOS = "select v.vehicleid id, v.vehiclecode codigo "
 			+ " from vehicle v "
-			+ " where (v.company_id = ? or 0 = ?) and v.enabled";
+			+ " where v.enabled";
+	
+	private static final String QUERY_AUTENTICACAO = "select u.id, u.username from tb_user u "
+			+ " where u.username = ?"
+			+ " and u.password = md5(?)";
 	
 	private static final String QUERY_PROGRAMACAO = "select pg1.id "
 			+ " from public.fw_program_day (?, Array[?]) as pg1";
@@ -47,13 +55,17 @@ public class DaoService {
 		return jdbcTemplate.query(QUERY_LINHAS, new BeanPropertyRowMapper<Linha>(Linha.class));
 	}
 	
-	public List<Veiculo> veiculos(Integer empresa) {
-		Object[] params = new Object[] {empresa, empresa};
-		return jdbcTemplate.query(QUERY_VEICULOS, params, new BeanPropertyRowMapper<Veiculo>(Veiculo.class));
+	public List<Veiculo> veiculos() {
+		return jdbcTemplate.query(QUERY_VEICULOS, new BeanPropertyRowMapper<Veiculo>(Veiculo.class));
 	}
 	
-	public List<Tabela> tabelas(Integer linha) {
-		Integer programId = getProgramacaoValida(new Date(), linha);
+	public void registraEscala(Integer idLinha, Integer idVeiculo, Integer idTabela) {
+		Object[] params = new Object[] {new Date(), getDateFinalDiaAtual(), idLinha, idVeiculo, idTabela};
+		jdbcTemplate.update(INSERT_ESCALA, params);
+	}
+	
+	public List<Tabela> tabelas(Integer idLinha) {
+		Integer programId = getProgramacaoValida(new Date(), idLinha);
 		Object[] params = new Object[] {programId};
 		return jdbcTemplate.query(QUERY_TABELA, params, new BeanPropertyRowMapper<Tabela>(Tabela.class));
 	}
@@ -63,5 +75,23 @@ public class DaoService {
 		return jdbcTemplate.queryForInt(QUERY_PROGRAMACAO, params);
 	}
 	
+	public Boolean autenticaUsuario(String usuario, String senha) {
+		Object[] params = new Object[] {usuario, formataSenha(usuario, senha)};
+		return !jdbcTemplate.query(QUERY_AUTENTICACAO, params, new BeanPropertyRowMapper<Tabela>(Tabela.class)).isEmpty();
+	}
+	
+	public Date getDateFinalDiaAtual(){
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(Calendar.HOUR_OF_DAY, 23);
+		calendar.set(Calendar.MINUTE, 59);
+		calendar.set(Calendar.SECOND, 59);
+		calendar.set(Calendar.MILLISECOND, 999);
+		
+		return calendar.getTime();
+	}
+	
+	private String formataSenha(String usuario, String senha){
+		return senha+"{"+usuario+"}";
+	}
 
 }

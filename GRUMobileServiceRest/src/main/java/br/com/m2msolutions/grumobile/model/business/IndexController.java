@@ -1,7 +1,8 @@
 package br.com.m2msolutions.grumobile.model.business;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
@@ -19,10 +20,12 @@ public class IndexController {
 	
 	private final Result result;
 	private final DaoService daoService;
+	private HttpServletResponse servletResponse;
 	
-	public IndexController(Result result, DaoService daoService) {
+	public IndexController(Result result, DaoService daoService, HttpServletResponse servletResponse) {
 		this.result = result;
 		this.daoService = daoService;
+		this.servletResponse = servletResponse;
 	}
 
 	@Path("/")
@@ -31,9 +34,15 @@ public class IndexController {
 	}
 	
 	@Post
-	@Path("/login")
+	@Path("/autenticacao")
 	public void login(String usuario, String senha) {
-		
+		if (!daoService.autenticaUsuario(usuario, senha)){
+			servletResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+			result.use(Results.json()).from("FAILURE", "retorno").serialize();
+		}else{
+			servletResponse.setStatus(HttpServletResponse.SC_OK);
+			result.use(Results.json()).from("SUCCESS", "retorno").serialize();
+		}
 	}
 	
 	@Get
@@ -44,23 +53,27 @@ public class IndexController {
 	}
 	
 	@Get
-	@Path("/veiculos/{empresa}")
-	public void veiculos(Integer empresa){
-		List<Veiculo> veiculos = daoService.veiculos(empresa);
+	@Path("/veiculos")
+	public void veiculos(){
+		List<Veiculo> veiculos = daoService.veiculos();
 		result.use(Results.json()).from(veiculos, "veiculos").serialize();
 	}
 	
 	@Get
-	@Path("/tabelas/{linha}")
-	public void tabelas(Integer linha){
-		List<Tabela> tabelas = daoService.tabelas(linha);
+	@Path("/tabelas/{idLinha}")
+	public void tabelas(Integer idLinha){
+		List<Tabela> tabelas = daoService.tabelas(idLinha);
 		result.use(Results.json()).from(tabelas, "tabelas").serialize();
 	}
 	
 	@Post
-	@Path("/registraEscala")
-	public void registraEscala(Integer veiculo, Integer linha, Integer tabela) {	
-		
+	@Path("/alocar")
+	public void registraEscala(Integer idLinha, Integer idVeiculo, Integer idTabela) {
+		try {
+			daoService.registraEscala(idLinha, idVeiculo, idTabela);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }
