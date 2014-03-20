@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<decorators defaultdir="/decorator">
+	<!-- paginas que serao decoradas de acordo com o layout padrao -->
+	<decorator name="master" page="master.jsp">
+		<pattern>/*</pattern>
+	</decorator>
+
+	<excludes>
+		<!-- Diretorio ou URI para criar paginas fora do padrao -->
+		<pattern>/login/*</pattern>
+	</excludes>
+</decorators>
